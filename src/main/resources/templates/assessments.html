@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assessments</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="bg-primary text-white text-center py-3">
+    <h1>All Assessments</h1>
+</header>
+<main class="container my-5">
+    <div class="card shadow p-4">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="assessment : ${assessments}">
+                <td th:text="${assessment.id}"></td>
+                <td th:text="${assessment.title}"></td>
+                <td th:text="${assessment.description}"></td>
+                <td th:text="${assessment.type}"></td>
+                <td th:text="${assessment.date}"></td>
+                <td>
+                    <a th:href="@{/updateAssessment/{id}(id=${assessment.id})}" class="btn btn-sm btn-success mx-1">Update</a>
+                    <a th:href="@{/deleteAssessment/{id}(id=${assessment.id})}" class="btn btn-sm btn-danger mx-1">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-end">
+            <a href="/registerAssessment" class="btn btn-secondary">Add New Assessment</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>
